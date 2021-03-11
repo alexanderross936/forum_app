@@ -199,10 +199,7 @@ app.get('/api/users', auth, (req, res) => {
 app.get('/api/post', auth, (req, res) => {
     const user = req.user.id;
     Post.find({User: user}, (err, notes) => {
-        // Note that this error doesn't mean nothing was found,
-        // it means the database had an error while searching, hence the 500 status
         if (err) return res.status(500).send(err)
-        // send the list of all people
         return res.status(200).send(notes);
     });
 });
